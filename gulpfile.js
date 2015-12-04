@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var webpack = require('webpack-stream');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -48,4 +49,14 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+gulp.task('webpack:build', function() {
+  return gulp.src('./www/js/app.js')
+    .pipe(webpack({
+      output: {
+        filename: 'bundle.js'
+      }
+    }))
+    .pipe(gulp.dest('./www/js/'));
 });
