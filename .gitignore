@@ -7,3 +7,4 @@ plugins/
 resources/
 www/lib
 www/js/bundle.js
+db
