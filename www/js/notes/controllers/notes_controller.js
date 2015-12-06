@@ -4,10 +4,7 @@ module.exports = function(app) {
     var handleError = function(res) {
       console.log(res);
     };
-    this.notes = [
-      { title: 'Note #1', noteBody: 'First test note.'},
-      { title: 'Note #2', noteBody: 'Second test note.'}
-    ];
+    this.notes = [];
 
     this.getAll = function() {
       $http.get(server)
@@ -19,7 +16,7 @@ module.exports = function(app) {
     }.bind(this);
 
     this.createNote = function(note) {
-      $http.post(server,note)
+      $http.post(server, note)
       .then(function(res){
         this.notes.push(res.data);
         this.newNote = null;
