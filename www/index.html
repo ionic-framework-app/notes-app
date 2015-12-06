@@ -21,38 +21,40 @@
     <!-- your app's js -->
     <script src="js/bundle.js"></script>
   </head>
+    <body ng-app="starter">
 
-  <body ng-app="starter" ng-controller="NotesController">
-    <ion-pane>
+      <ion-pane>
+        <ion-header-bar class="bar-stable">
+          <h1 class="title">Notes App</h1>
+        </ion-header-bar>
 
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Notes App</h1>
-      </ion-header-bar>
-
-      <ion-content class="appContent" ng-controller="NotesController" ng-init="getAll()">
+        <ion-content ng-controller="NotesController as notes" ng-init="notes.getAll()">
 
         <ion-list>
           <h1>My Notes:</h1>
-          <ion-item ng-repeat="note in notes">
+          <ion-item ng-repeat="note in notes.notes">
             <h2>{{note.title}}</h2>
             <p>{{note.noteBody}}</p>
-            <button ng-click="delete(note)" class="button-assertive">Delete</button>
-            <!-- <button ng-click="delete(note)" class="button icon button-icon ion-trash-a">Delete</button> -->
+            <div class="button-bar">
+              <button ng-click="notes.updateNote(note)" class="button icon button-icon ion-edit"></button>
+              <button ng-click="notes.deleteNote(notes.newNote)" class="button icon button-icon ion-trash-a"></button>
+            </div>
           </ion-item>
         </ion-list>
 
-        <form ng-submit="create(note)">
+        <form class="list" ng-submit="notes.createNote(notes.newNote)">
           <h1>New Note:</h1>
           <label class="item item-input">Note Title:</label>
-          <input type="text" placeholder="Title" ng-model="note.title">
+          <input type="text" placeholder="Title" ng-model="notes.newNote.title">
 
           <label class="item item-input">Note Body:</label>
-          <input type="text" placeholder="Body" ng-model="note.noteBody">
+          <input type="text" placeholder="Body" ng-model="notes.newNote.noteBody">
 
-          <button ng-click="create(note)" class="button button-block button-calm">Create New Note</button>
+          <button class="button button-full button-calm">Create New Note</button>
         </form>
-      </ion-content>
 
-    </ion-pane>
-  </body>
+        </ion-content>
+
+      </ion-pane>
+    </body>
 </html>
