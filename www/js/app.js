@@ -6,8 +6,9 @@
 var angular = window.angular;
 var notesApp = angular.module('starter', ['ionic']);
 
-notesApp.config(['$httpProvider', function($http) {
-  $http.defaults.useXDomain = true;
+notesApp.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.defaults.useXDomain = true;
+  // delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }]);
 
 require('./notes/notes')(notesApp);
