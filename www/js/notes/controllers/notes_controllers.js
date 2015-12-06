@@ -1,7 +1,10 @@
-var angular = window.angular;
+// var angular = window.angular;
 module.exports = function(app) {
   app.controller('NotesController', ['$scope', '$http', function($scope, $http) {
-    $scope.notes = [];
+    $scope.notes = [
+      { title: 'Note #1', noteBody: 'First test note.'},
+      { title: 'Note #2', noteBody: 'Second test note.'}
+    ];
     $scope.errors = [];
     $scope.newNote = null;
 
@@ -36,7 +39,7 @@ module.exports = function(app) {
     };
 
     $scope.delete = function(note) {
-      $scope.notes.splice($scope.note.indexOf(note), 1);
+      $scope.notes.splice($scope.notes.indexOf(note), 1);
       $http.delete('/api/notes/' + note._id)
         .then(function(res) {
           console.log('Note deleted.');
@@ -48,3 +51,4 @@ module.exports = function(app) {
     };
   }]);
 };
+
