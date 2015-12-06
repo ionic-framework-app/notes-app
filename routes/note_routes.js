@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var Notes = require(__dirname + '/../models/notes');
+var Notes = require(__dirname + '/../models/note');
 var handleServerError = require(__dirname + '/../lib/handle_server_error');
 
 var notesRouter = module.exports = exports = express.Router();
