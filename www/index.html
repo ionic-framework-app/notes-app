@@ -21,15 +21,41 @@
     <!-- your app's js -->
     <script src="js/bundle.js"></script>
   </head>
-  <body ng-app="starter">
 
+  <body ng-app="starter">
     <ion-pane>
+
       <ion-header-bar class="bar-stable">
         <h1 class="title">Notes App</h1>
       </ion-header-bar>
-      <ion-content ng-controller="MyController as controller">
-        {{controller.greeting}}
+
+      <ion-content class="appContent" ng-controller="NotesController as notes" ng-init="notes.getAll()">
+
+        <ion-list>
+          <h1>My Notes:</h1>
+          <ion-item ng-repeat="note in notes.notes">
+            <h2>{{note.title}}</h2>
+            <p>{{note.noteBody}}</p>
+            <!-- <ion-option-button ng-click="notes.update(note)" class="button-assertive">Edit</ion-option-button>
+            <ion-delete-button ng-click="notes.delete(note)" class="button icon button-icon ion-trash-a">Delete</ion-delete-button> -->
+          </ion-item>
+          <!-- This should be deleted and above should be uncommented once a note actually appears -->
+          <ion-option-button ng-click="notes.update(note)" class="button-assertive">Edit</ion-option-button>
+            <ion-delete-button ng-click="notes.delete(note)" class="button icon button-icon ion-trash-a">Delete</ion-delete-button>
+        </ion-list>
+
+        <form ng-submit="notes.create(notes.newNote)">
+          <h1>New Note:</h1>
+          <label class="item item-input">Note Title:</label>
+          <input type="text" placeholder="Title" ng-model="notes.newNote.title">
+
+          <label class="item item-input">Note Body:</label>
+          <input type="text" placeholder="Body" ng-model="notes.newNote.noteBody">
+
+          <ion-option-button class="button button-block button-calm">Create New Note</ion-option-button>
+        </form>
       </ion-content>
+
     </ion-pane>
   </body>
 </html>

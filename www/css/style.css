@@ -1,1 +1,14 @@
 /* Empty. Add your own CSS if you like */
+* {
+  width: 90%;
+}
+.bar-stable {
+  height: 50px;
+}
+.appContent {
+  padding-top: 75px;
+  padding-left: 5%;
+}
+input {
+  background-color: lightyellow;
+}
