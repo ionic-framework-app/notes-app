@@ -1,5 +1,6 @@
 module.exports = function(app) {
-  app.controller('NotesController', ['$http', function($http){
+
+  app.controller('NotesController', ['$http', '$ionicModal', function($http, $ionicModal){
     var server = 'http://' + SERVER_ADDRESS + '/api/notes';
     var handleError = function(res) {
       console.log(res);
@@ -51,4 +52,3 @@ module.exports = function(app) {
 
   }])
 };
-
