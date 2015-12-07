@@ -43,18 +43,18 @@
             </div>
           </span>
 
-          <form data-ng-show="note.editing" data-ng-submit="notes.update(book)">
+          <form data-ng-show="note.editing">
             <h3>Edit Details for {{note.title}}</h3>
             <label class="item item-input">Note Title:</label>
-            <input type="text" placeholder="Title" ng-model="notes.newNote.title">
+            <input type="text" placeholder="Title" ng-model="notes.orig.title">
 
             <label class="item item-input">Note Body:</label>
-            <input type="text" placeholder="Body" ng-model="notes.newNote.noteBody">
+            <input type="text" placeholder="Body" ng-model="notes.orig.noteBody">
 
-            <button class="button button-full button-calm">Submit Changes</button>
+            <button class="button button-full button-calm" data-ng-click="notes.updateNote(note)">Submit Changes</button>
+
+            <button data-ng-show="note.editing" data-ng-click="notes.cancelEdit(note)">Cancel Changes</button>
           </form>
-
-          <button data-ng-show="note.editing" data-ng-click="notes.cancelEdit(note)">Cancel Changes</button>
 
           </ion-item>
         </ion-list>
