@@ -5,9 +5,12 @@
 // the 2nd parameter is an array of 'requires'
 var angular = window.angular;
 var notesApp = angular.module('starter', ['ionic']);
-notesApp.controller('MyController', function() {
-  this.greeting = 'hello world';
-});
+
+notesApp.config(['$httpProvider', function($http) {
+  $http.defaults.useXDomain = true;
+}]);
+
+require('./notes/notes')(notesApp);
 
 notesApp.run(['$ionicPlatform', function($ionicPlatform) {
   $ionicPlatform.ready(function() {

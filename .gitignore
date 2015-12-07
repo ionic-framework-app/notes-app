@@ -8,3 +8,5 @@ resources/
 www/lib
 www/js/bundle.js
 db
+.env.js
+.DS_Store

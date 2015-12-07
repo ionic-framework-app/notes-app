@@ -21,15 +21,58 @@
     <!-- your app's js -->
     <script src="js/bundle.js"></script>
   </head>
-  <body ng-app="starter">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Notes App</h1>
-      </ion-header-bar>
-      <ion-content ng-controller="MyController as controller">
-        {{controller.greeting}}
-      </ion-content>
-    </ion-pane>
-  </body>
+    <body ng-app="starter">
+
+      <ion-pane>
+        <ion-header-bar class="bar-stable">
+          <h1 class="title">Notes App</h1>
+        </ion-header-bar>
+
+        <ion-content ng-controller="NotesController as notes" ng-init="notes.getAll()">
+
+        <ion-list>
+          <h1>My Notes:</h1>
+          <ion-item ng-repeat="note in notes.notes">
+
+          <span data-ng-if="!note.editing">
+            <h2>{{note.title}}</h2>
+            <p>{{note.noteBody}}</p>
+            <div class="button-bar">
+              <button ng-click="notes.edit(note)" class="button icon button-icon ion-edit"></button>
+              <button ng-click="notes.deleteNote(note)" class="button icon button-icon ion-trash-a"></button>
+            </div>
+          </span>
+
+          <form data-ng-if="note.editing">
+            <h3>Edit Details for {{note.title}}</h3>
+            <label class="item item-input">Note Title:</label>
+            <input type="text" placeholder="Title" ng-model="note.title">
+
+            <label class="item item-input">Note Body:</label>
+            <input type="text" placeholder="Body" ng-model="note.noteBody">
+
+            <button class="button button-full button-calm" data-ng-click="notes.updateNote(note)">Submit Changes</button>
+
+            <button data-ng-click="note.editing = false; notes.cancelEdit(note)">Cancel Changes</button>
+          </form>
+
+          </ion-item>
+        </ion-list>
+
+        <form class="list" ng-submit="notes.createNote(notes.newNote)">
+          <h1>New Note:</h1>
+          <label class="item item-input">Note Title:</label>
+          <input type="text" placeholder="Title" ng-model="notes.newNote.title">
+
+          <label class="item item-input">Note Body:</label>
+          <input type="text" placeholder="Body" ng-model="notes.newNote.noteBody">
+
+          <button class="button button-full button-calm">Create New Note</button>
+        </form>
+
+        </ion-content>
+
+      </ion-pane>
+    </body>
 </html>
