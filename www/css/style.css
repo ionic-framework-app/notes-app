@@ -1,1 +1,13 @@
 /* Empty. Add your own CSS if you like */
+* {
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
+}
+.button-bar {
+  width: 100px;
+  float: right;
+}
+input {
+  background-color: lightyellow;
+}

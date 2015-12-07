@@ -8,7 +8,6 @@ var notesRouter = module.exports = exports = express.Router();
 notesRouter.get('/notes', function(req, res) {
   Note.find({}, function(err, data) {
     if (err) return handleServerError(err, res);
-
     res.json(data);
   });
 });
@@ -17,25 +16,22 @@ notesRouter.post('/notes', bodyParser.json(), function(req, res) {
   var newNote = new Note(req.body);
   newNote.save(function(err, data) {
     if (err) return handleServerError(err, res);
-
     res.json(data);
   });
 });
 
 notesRouter.put('/notes/:id', bodyParser.json(), function(req, res) {
-  var notesData = req.body;
-  delete notesData._id;
-  Note.update({_id: req.params.id}, notesData, function(err) {
+  var noteData = req.body;
+  delete noteData._id;
+  Note.update({_id: req.params.id}, noteData, function(err) {
     if (err) return handleServerError(err, res);
-
-    res.json({msg: 'Notes out!'});
+    res.json({msg:'Update successful!'});
   });
 });
 
 notesRouter.delete('/notes/:id', function(req, res) {
   Note.remove({_id: req.params.id}, function(err) {
     if (err) return handleServerError(err, res);
-
-    res.json({msg: 'success!'});
+    res.json({msg:'Delete successful!'});
   });
 });

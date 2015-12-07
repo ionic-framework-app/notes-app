@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var angular = window.angular;
-var notesApp = angular.module('notes-app', ['ionic']);
+var notesApp = angular.module('starter', ['ionic']);
 
-notesApp.config(['$httpProvider', function($http){
+notesApp.config(['$httpProvider', function($http) {
   $http.defaults.useXDomain = true;
 }]);
 
