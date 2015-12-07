@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Notes App</title>
+    <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -27,7 +27,20 @@
       <ion-header-bar class="bar-stable">
         <h1 class="title">Notes App</h1>
       </ion-header-bar>
-      <ion-content>
+      <ion-content ng-controller="NotesController as notes" ng-init="notes.getAll(); notes.startModal()">
+      <form class="list" ng-submit="notes.createNote(notes.newNote)">
+        <label class="item item-input">
+          <input type="text" placeholder="Note" ng-model="notes.newNote.noteBody">
+        </label>
+        <button class="button button-full button-balanced">Create New Note</button>
+      </form>
+        <ion-list>
+
+        <ion-item class="item-button-right" ng-repeat="note in notes.notes" ng-click="notes.openModal()">
+        {{note.noteBody}}
+          <button ng-click="notes.deleteNote(note)" class="button icon button-icon ion-trash-a"></button>
+        </ion-item>
+      </ion-list>
       </ion-content>
     </ion-pane>
   </body>

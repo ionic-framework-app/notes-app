@@ -4,9 +4,15 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var angular = window.angular;
-var notesApp = angular.module('starter', ['ionic'])
+var notesApp = angular.module('starter', ['ionic']);
 
-notesApp.run([ '$ionicPlatform', function($ionicPlatform) {
+notesApp.config(['$httpProvider', function($http){
+  $http.defaults.useXDomain = true;
+}]);
+
+require('./notes/notes')(notesApp);
+
+notesApp.run(['$ionicPlatform', function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

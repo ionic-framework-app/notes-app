@@ -1,12 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var Notes = require(__dirname + '/../models/note');
+var Note = require(__dirname + '/../models/note').Note;
 var handleServerError = require(__dirname + '/../lib/handle_server_error');
 
 var notesRouter = module.exports = exports = express.Router();
 
 notesRouter.get('/notes', function(req, res) {
-  Notes.find({}, function(err, data) {
+  Note.find({}, function(err, data) {
     if (err) return handleServerError(err, res);
 
     res.json(data);
@@ -14,8 +14,8 @@ notesRouter.get('/notes', function(req, res) {
 });
 
 notesRouter.post('/notes', bodyParser.json(), function(req, res) {
-  var newNotes = new Notes(req.body);
-  newNotes.save(function(err, data) {
+  var newNote = new Note(req.body);
+  newNote.save(function(err, data) {
     if (err) return handleServerError(err, res);
 
     res.json(data);
@@ -25,7 +25,7 @@ notesRouter.post('/notes', bodyParser.json(), function(req, res) {
 notesRouter.put('/notes/:id', bodyParser.json(), function(req, res) {
   var notesData = req.body;
   delete notesData._id;
-  Notes.update({_id: req.params.id}, notesData, function(err) {
+  Note.update({_id: req.params.id}, notesData, function(err) {
     if (err) return handleServerError(err, res);
 
     res.json({msg: 'Notes out!'});
@@ -33,7 +33,7 @@ notesRouter.put('/notes/:id', bodyParser.json(), function(req, res) {
 });
 
 notesRouter.delete('/notes/:id', function(req, res) {
-  Notes.remove({_id: req.params.id}, function(err) {
+  Note.remove({_id: req.params.id}, function(err) {
     if (err) return handleServerError(err, res);
 
     res.json({msg: 'success!'});

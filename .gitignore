@@ -8,3 +8,4 @@ resources/
 www/lib
 hooks/
 db/
+.env.js

@@ -19,6 +19,7 @@
     "shelljs": "^0.3.0",
     "stream": "0.0.2",
     "webpack": "^1.12.9",
+    "webpack-env": "^0.8.0",
     "webpack-stream": "^2.3.0"
   },
   "cordovaPlugins": [
