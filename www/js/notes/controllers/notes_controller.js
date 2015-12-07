@@ -31,7 +31,7 @@ module.exports = function(app) {
         }.bind(this), handleError)
     }.bind(this);
 
-    this.deleteNote = function(ninja) {
+    this.deleteNote = function(note) {
       this.notes.splice(this.notes.indexOf(note), 1);
       $http.delete(server + '/' + note._id)
         .then(function(res) {
