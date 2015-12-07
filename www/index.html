@@ -33,12 +33,29 @@
         <ion-list>
           <h1>My Notes:</h1>
           <ion-item ng-repeat="note in notes.notes">
+
+          <span data-ng-hide="note.editing">
             <h2>{{note.title}}</h2>
             <p>{{note.noteBody}}</p>
             <div class="button-bar">
-              <button ng-click="notes.updateNote(note)" class="button icon button-icon ion-edit"></button>
-              <button ng-click="notes.deleteNote(notes.newNote)" class="button icon button-icon ion-trash-a"></button>
+              <button ng-click="notes.edit(note)" class="button icon button-icon ion-edit"></button>
+              <button ng-click="notes.deleteNote(note)" class="button icon button-icon ion-trash-a"></button>
             </div>
+          </span>
+
+          <form data-ng-show="note.editing" data-ng-submit="notes.update(book)">
+            <h3>Edit Details for {{note.title}}</h3>
+            <label class="item item-input">Note Title:</label>
+            <input type="text" placeholder="Title" ng-model="notes.newNote.title">
+
+            <label class="item item-input">Note Body:</label>
+            <input type="text" placeholder="Body" ng-model="notes.newNote.noteBody">
+
+            <button class="button button-full button-calm">Submit Changes</button>
+          </form>
+
+          <button data-ng-show="note.editing" data-ng-click="notes.cancelEdit(note)">Cancel Changes</button>
+
           </ion-item>
         </ion-list>
 
