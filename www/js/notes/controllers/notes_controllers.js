@@ -31,11 +31,12 @@ module.exports = function(app) {
         }.bind(this), handleError)
     }.bind(this);
 
-    this.deleteNote = function(note) {
+    this.deleteNote = function(ninja) {
+      this.notes.splice(this.notes.indexOf(note), 1);
       $http.delete(server + '/' + note._id)
-        .then(function(res){
-          this.notes.splice(this.notes.indexOf(note), 1);
+        .then(function(res) {
+          console.log(res);
         }.bind(this), handleError)
-    }
-  }])
-});
+    }.bind(this);
+  });
+};
