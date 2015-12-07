@@ -6,6 +6,6 @@ platforms/
 plugins/
 resources/
 www/lib
-hooks/
-db/
+www/js/bundle.js
+db
 .env.js
