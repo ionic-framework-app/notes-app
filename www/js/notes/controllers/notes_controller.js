@@ -38,5 +38,5 @@ module.exports = function(app) {
           console.log(res);
         }.bind(this), handleError)
     }.bind(this);
-  });
+  }]);
 };
