@@ -34,7 +34,7 @@
           <h1>My Notes:</h1>
           <ion-item ng-repeat="note in notes.notes">
 
-          <span data-ng-hide="note.editing">
+          <span data-ng-if="!note.editing">
             <h2>{{note.title}}</h2>
             <p>{{note.noteBody}}</p>
             <div class="button-bar">
@@ -43,17 +43,17 @@
             </div>
           </span>
 
-          <form data-ng-show="note.editing">
+          <form data-ng-if="note.editing">
             <h3>Edit Details for {{note.title}}</h3>
             <label class="item item-input">Note Title:</label>
-            <input type="text" placeholder="Title" ng-model="notes.orig.title">
+            <input type="text" placeholder="Title" ng-model="note.title">
 
             <label class="item item-input">Note Body:</label>
-            <input type="text" placeholder="Body" ng-model="notes.orig.noteBody">
+            <input type="text" placeholder="Body" ng-model="note.noteBody">
 
             <button class="button button-full button-calm" data-ng-click="notes.updateNote(note)">Submit Changes</button>
 
-            <button data-ng-show="note.editing" data-ng-click="notes.cancelEdit(note)">Cancel Changes</button>
+            <button data-ng-click="note.editing = false; notes.cancelEdit(note)">Cancel Changes</button>
           </form>
 
           </ion-item>

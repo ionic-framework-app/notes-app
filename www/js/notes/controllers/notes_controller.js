@@ -35,22 +35,18 @@ module.exports = function(app) {
       note.editing = false;
       $http.put(server + '/' + note._id, note)
         .then(function(res){
-          console.log('Update/PUT complete.');
+          // console.log('Update/PUT complete.');
         }.bind(this), handleError)
     }.bind(this);
 
     this.edit = function(note) {
-      console.log('Edit button clicked, go ahead and make changes.');
+      this.orig = angular.copy(note);
       note.editing = true;
-      this.orig.title = note.title;
-      this.orig.noteBody = note.noteBody;
     }.bind(this);
 
     this.cancelEdit = function(note) {
-      console.log('Edit cancelled, changes will not be saved.');
-      note.editing = false;
-      note.title = this.orig.title;
-      note.noteBody = this.orig.noteBody;
+        angular.copy(this.orig, note);
+        note.editing = false;
     }.bind(this);
 
   }])
