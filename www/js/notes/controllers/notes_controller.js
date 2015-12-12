@@ -25,14 +25,6 @@ module.exports = function(app) {
       }.bind(this), handleError)
     }.bind(this);
 
-    this.updateNote = function(note) {
-      note.editing = false;
-      $http.put(server + '/' + note._id, note)
-        .then(function(res) {
-          console.log(res);
-        }.bind(this), handleError)
-    }.bind(this);
-
     this.deleteNote = function(note) {
       $http.delete(server + '/' + note._id, note)
         .then(function(res){

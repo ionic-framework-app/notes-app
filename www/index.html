@@ -46,10 +46,10 @@
 
           <form data-ng-if="note.editing">
             <h3>Edit Details for {{note.title}}</h3>
-            <label class="item item-input">Note Title:</label>
+            <label class="item item-input">Title:</label>
             <input type="text" placeholder="Title" ng-model="note.title">
 
-            <label class="item item-input">Note Body:</label>
+            <label class="item item-input">Body:</label>
             <input type="text" placeholder="Body" ng-model="note.noteBody">
 
             <button class="button button-full button-calm" data-ng-click="notes.updateNote(note)">Submit Changes</button>
@@ -62,11 +62,11 @@
 
         <form class="list" ng-submit="notes.createNote(notes.newNote)">
           <h1>New Note:</h1>
-          <label class="item item-input">Note Title:</label>
-          <input type="text" placeholder="Title" ng-model="notes.newNote.title">
+          <label class="item item-input">Title:</label>
+          <input type="text" placeholder="note title" ng-model="notes.newNote.title">
 
-          <label class="item item-input">Note Body:</label>
-          <input type="text" placeholder="Body" ng-model="notes.newNote.noteBody">
+          <label class="item item-input">Body:</label>
+          <input type="text" placeholder="write a note" ng-model="notes.newNote.noteBody">
 
           <button class="button button-full button-calm">Create New Note</button>
         </form>
